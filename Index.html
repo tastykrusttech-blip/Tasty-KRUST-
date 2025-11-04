@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://js.paystack.co; connect-src 'self' https://api.paystack.co;">
+    <title>Tasty Krust - ₦500 Group Meals</title>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <style>
+        body {font-family: 'Arial', sans-serif; margin: 0; padding: 0; background: #f4f4f4; color: #333;}
+        header {background: #4CAF50; color: white; padding: 20px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1);}
+        nav {display: flex; justify-content: center; background: #333; padding: 10px;}
+        nav a {color: white; text-decoration: none; margin: 0 15px; font-weight: bold; transition: color 0.3s;}
+        nav a:hover {color: #4CAF50;}
+        .container {max-width: 1200px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);}
+        h1, h2 {color: #4CAF50;}
+        button {background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: background 0.3s;}
+        button:hover {background: #45a049;}
+        .hero {background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1543352634-92b7e23e2d4b') center/cover; color: white; text-align: center; padding: 100px 20px;}
+        .hero h1 {font-size: 3em;}
+        .features {display: flex; flex-wrap: wrap; justify-content: space-around; margin: 20px 0;}
+        .feature {flex: 1 1 300px; margin: 10px; padding: 20px; background: #e8f5e9; border-radius: 8px; text-align: center; transition: transform 0.3s;}
+        .feature:hover {transform: scale(1.05);}
+        .signup {background: #e8f5e9; padding: 20px; border-radius: 8px; margin: 20px 0;}
+        .signup form {max-width: 400px; margin: auto;}
+        .signup input, .signup select {margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px; width: 100%; box-sizing: border-box;}
+        .group-buy {background: #fffde7; padding: 20px; border-radius: 8px; margin: 20px 0;}
+        .group-buy form {max-width: 400px; margin: auto;}
+        .group-buy input, .group-buy select {margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px; width: 100%; box-sizing: border-box;}
+        .tracking input {width: 100%; max-width: 400px; padding: 10px; margin-bottom: 10px;}
+        #tracking-result {background: #e3f2fd; padding: 10px; border-radius: 5px;}
+        footer {background: #333; color: white; text-align: center; padding: 10px; margin-top: 20px;}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tasty Krust</h1>
+        <p>₦500 Group Meals for UNIBEN Students</p>
+    </header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#signup">Sign Up</a>
+        <a href="#group-buy">Group Buy</a>
+        <a href="#vendor">Vendors</a>
+        <a href="#track">Track</a>
+        <a href="#survey">Survey</a>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1>End Meal-Skipping Today!</h1>
+        <p>Join 5+ friends. Pay ₦500. Get fresh meals delivered.</p>
+        <button onclick="document.getElementById('signup').scrollIntoView()">Sign Up & Start</button>
+    </section>
+
+    <div class="container">
+        <section class="features">
+            <h2>Why Tasty Krust?</h2>
+            <div class="feature">
+                <h3>Group Power</h3>
+                <p>Min 5 people = ₦500 meals</p>
+            </div>
+            <div class="feature">
+                <h3>Fresh & Fast</h3>
+                <p>Campus delivery in 30 mins</p>
+            </div>
+            <div class="feature">
+                <h3>Trusted Dealers</h3>
+                <p>20-30% cheaper than market</p>
+            </div>
+        </section>
+
+        <section id="signup" class="signup">
+            <h2>Sign Up to Join</h2>
+            <form id="signup-form">
+                <input type="text" id="name" placeholder="Full Name" required>
+                <select id="department" required>
+                    <option value="">Select Department</option>
+                    <option value="engineering">Engineering</option>
+                    <option value="medicine">Medicine</option>
+                    <option value="arts">Arts & Social Sciences</option>
+                    <option value="sciences">Physical Sciences</option>
+                    <option value="education">Education</option>
+                    <option value="law">Law</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="tel" id="phone" placeholder="+234xxxxxxxxx" pattern="[+234][0-9]{10}" required title="Format: +234xxxxxxxxx">
+                <input type="email" id="email" placeholder="Email" required>
+                <button type="submit">Continue to Group Buy</button>
+            </form>
+            <p><small>Your details are secure & used for order confirmations.</small></p>
+        </section>
+
+        <section id="group-buy" class="group-buy">
+            <h2>Create Your Group Buy</h2>
+            <form id="group-buy-form">
+                <select id="meal-type" required>
+                    <option value="">Choose Meal</option>
+                    <option>Jollof Rice</option>
+                    <option>Plantain & Beans</option>
+                </select>
+                <input type="number" id="group-size" min="5" value="5" placeholder="Group Size" required>
+                <input type="text" id="delivery-location" placeholder="Dorm/Hall Name" required>
+                <button type="submit">Pay ₦500 & Start</button>
+            </form>
+            <p><small>Secure payment via Paystack. Test mode active.</small></p>
+        </section>
+
+        <section id="vendor">
+            <h2>Vendor Dashboard</h2>
+            <p>Coming soon: Connect to dealers, track savings.</p>
+        </section>
+
+        <section id="track" class="tracking">
+            <h2>Track Order</h2>
+            <input type="text" id="tracking-id" placeholder="Enter Tracking ID">
+            <button onclick="trackOrder()">Track</button>
+            <div id="tracking-result"></div>
+        </section>
+
+        <section id="survey">
+            <h2>Take Survey & Win Free Meals!</h2>
+            <p><a href="https://forms.gle/E2vMtHAtwFHehSv38" target="_blank">Click Here → 2 Mins</a></p>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2025 Tasty Krust Technologies Ltd. | SMEDAN & CAC Registered</p>
+    </footer>
+
+    <script>
+        let userData = {}; // Store signup data for payment
+
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const department = document.getElementById('department').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+
+            // Validation
+            if (!name || !department || !phone || !email) { alert('Fill all fields'); return; }
+            if (!/^\+234[0-9]{10}$/.test(phone)) { alert('Phone: +234xxxxxxxxx format'); return; }
+            if (!email.includes('@')) { alert('Valid email required'); return; }
+
+            userData = { name, department, phone, email };
+            alert('Signed up! Scroll to group buy.');
+            document.getElementById('group-buy').scrollIntoView();
+        });
+
+        function trackOrder() {
+            const id = document.getElementById('tracking-id').value;
+            document.getElementById('tracking-result').innerHTML = id ? 
+                `Order ${id}: In Transit (ETA: 25 mins)` : 'Enter a valid ID';
+        }
+
+        document.getElementById('group-buy-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const mealType = document.getElementById('meal-type').value;
+            const groupSize = document.getElementById('group-size').value;
+            const location = document.getElementById('delivery-location').value;
+            const email = userData.email || prompt('Email for payment:');
+
+            if (!mealType || !groupSize || groupSize < 5 || !location || !email) { alert('Complete all fields'); return; }
+
+            let handler = PaystackPop.setup({
+                key: 'pk_test_yourkeyhere', // Replace with real key
+                email: email,
+                amount: 50000,
+                currency: 'NGN',
+                ref: 'TK' + Math.floor((Math.random() * 1000000000) + 1),
+                metadata: {
+                    ...userData, // Include name, dept, phone
+                    meal_type: mealType,
+                    group_size: groupSize,
+                    delivery_location: location
+                },
+                callback: function(response) {
+                    alert(`Payment successful! Ref: ${response.reference}. Check email for details.`);
+                },
+                onClose: function() {
+                    alert('Payment cancelled.');
+                }
+            });
+            handler.openIframe();
+        });
+    </script>
+</body>
+</html>
